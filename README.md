@@ -41,3 +41,5 @@ active = 2                                      # active stage, 1-6
 [polling]
 rate = 1000                                     # 125, 250, 500 or 1000 Hz
 ```
+## Disclaimer
+This was all vibe coded, i dont really care about this code or what its doing, but it fixes my problem ig.
