@@ -10,7 +10,7 @@ Requires Go with cgo and the `libudev` headers.
 sudo apt install libudev-dev   # Debian/Ubuntu
 sudo pacman -S systemd-libs    # Arch
 
-git clone <repo> && cd open-shark
+git clone https://github.com/Guilherme-Costa-Dev/open-shark.git && cd open-shark
 go build -o open-shark ./cmd/open-shark
 ```
 
