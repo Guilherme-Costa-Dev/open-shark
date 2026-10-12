@@ -26,14 +26,13 @@ package() {
   install -Dm755 open-shark "$pkgdir/usr/bin/$pkgname"
   install -Dm644 config.example.toml "$pkgdir/usr/share/doc/$pkgname/config.example.toml"
 
-  # udev rule: grant the logged-in user access to the mouse's configuration
-  # interface so no root is needed at runtime.
+  # udev rule: grant access to the mouse's configuration interface.
   install -d "$pkgdir/usr/lib/udev/rules.d"
   cat > "$pkgdir/usr/lib/udev/rules.d/99-attack-shark-x11.rules" <<'EOF'
 # Attack Shark X11 configuration interface.
 # fa60 = 2.4 GHz dongle, fa55 = X11 wired, fa61 = R1 wired.
-SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa60", TAG+="uaccess"
-SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa55", TAG+="uaccess"
-SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa61", TAG+="uaccess"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa60", MODE="0666"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa55", MODE="0666"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa61", MODE="0666"
 EOF
 }
