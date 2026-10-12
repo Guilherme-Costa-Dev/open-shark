@@ -1,0 +1,12 @@
+# open-shark configuration
+# Copy to ~/.config/open-shark/config.toml and run: open-shark apply
+
+[dpi]
+# Six sensitivity stages, 50..22000 DPI.
+stages = [800, 1600, 2400, 3200, 5000, 22000]
+# Stage selected on power-up (1..6).
+active = 2
+
+[polling]
+# Report rate in Hz: 125, 250, 500 or 1000.
+rate = 1000
