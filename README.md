@@ -4,16 +4,21 @@ CLI tool to configure the DPI and polling rate of an Attack Shark X11 mouse on L
 
 ## Install
 
-Requires Go with cgo and the `libudev` headers.
+**Arch** — this repo ships a PKGBUILD. Build and install it locally:
 
 ```sh
-sudo apt install libudev-dev   # Debian/Ubuntu
-sudo pacman -S systemd-libs    # Arch
-
-git clone https://github.com/Guilherme-Costa-Dev/open-shark.git 
-cd open-shark
-go build -o ~/.local/bin/open-shark ./cmd/open-shark
+makepkg -si
 ```
+
+**Other distros** (needs Go with cgo and the `libudev` headers):
+
+```sh
+go build -o open-shark ./cmd/open-shark
+sudo install -m 755 open-shark /usr/local/bin/open-shark
+```
+
+`makepkg -si` also installs a udev rule, so the tool runs without root. If you
+install manually, add the rule yourself (see `PKGBUILD`) or run with `sudo`.
 
 ## Usage
 
@@ -21,12 +26,10 @@ go build -o ~/.local/bin/open-shark ./cmd/open-shark
 mkdir -p ~/.config/open-shark
 cp config.example.toml ~/.config/open-shark/config.toml   # then edit it
 
-sudo open-shark apply      # apply the config to the mouse
-sudo open-shark battery    # read the battery level
-sudo open-shark info       # device + battery
+open-shark apply      # apply the config to the mouse
+open-shark battery    # read the battery level
+open-shark info       # device + battery
 ```
-
-`sudo` is required because `/dev/hidraw*` is owned by root.
 
 Edit `~/.config/open-shark/config.toml`:
 
